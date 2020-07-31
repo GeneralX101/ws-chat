@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import CreateMessage from "./components/CreateMessage";
+import Messages from "./components/Messages";
 
 function App() {
+  const [name, setName] = React.useState("Guest");
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
+      <div style={{ padding: 20, textAlign: "center" }}>
+        <label htmlFor="name">Name:</label>
+        <input id="name" type="text" value={name} onChange={handleNameChange} />
+      </div>
+      <Messages />
+      <CreateMessage name={name} />
     </div>
   );
 }
